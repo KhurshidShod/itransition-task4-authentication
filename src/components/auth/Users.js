@@ -101,6 +101,14 @@ function Users({ auth: { isAuthenticated, loading }, logout}) {
   //   console.log("checked users",usersList)
   //   handleCheck(event.target.checked)
   // }
+    const deleteUsers = () => {
+    checkedUsersId.map(async (selectedUser) => {
+      axios.delete(`https://itransition-task4-auth.herokuapp.com/api/users/${selectedUser}`)
+      .then(res => console.log(res.json()))
+    fetchData();
+    window.location.reload(false)
+  });
+};
 
   const handleSelectAll = e => {
     setIsCheckAll(!isCheckAll);
@@ -132,6 +140,7 @@ function Users({ auth: { isAuthenticated, loading }, logout}) {
               <th>Status</th>
               <th><button className="block_unblock_Button blockBTN" onClick={blockCheckedUsers} disabled={!checkedUsersId.length}>Block</button></th>
               <th><button className="block_unblock_Button unblockBTN" onClick={unblockCheckedUsers} disabled={!checkedUsersId.length}>Unblock</button></th>
+              <th><button className="block_unblock_Button delete_Button" onClick={deleteUsers}  disabled={!checkedUsersId.length}>Delete</button></th>
             </tr>
           </thead>
           <tbody>
