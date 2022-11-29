@@ -15,7 +15,7 @@ export const loadUsers = () => async (dispatch) => {
         setAuthToken(localStorage.token)
     }
     try {
-        const res = await axios.get('https://itransition-task4-auth.herokuapp.com/api/auth')
+        const res = await axios.get('/api/auth')
         dispatch({
             type: AUTH_PASS,
             payload: res.data
@@ -33,13 +33,18 @@ async (dispatch) => {
     };
     const body = JSON.stringify({ name, email, password });
     try {
-        const res = await axios.post("https://itransition-task4-auth.herokuapp.com/api/users", body, config);
+        const res = await axios.post("/api/users", body, config);
         dispatch({
             type: REG_PASS,
             payload: res.data
         });
     } catch (error) {
-        console.log(error)
+        const errors = error.response.data.errors;
+        if(errors) {
+            errors.forEach((error) => {
+                alert(error.msg)
+            });
+        }
         dispatch({
             type: REG_FAIL,
         })
@@ -52,14 +57,17 @@ export const login = ({ email, password, status }) => async (dispatch) => {
     }
     const body = JSON.stringify({ email, password });
     try {
-        const res = await axios.post('https://itransition-task4-auth.herokuapp.com/api/auth', body, config);
+        const res = await axios.post('/api/auth', body, config);
         dispatch({
             type: LOGIN_PASS,
             payload: res.data
         })
         dispatch(loadUsers)
     } catch (err) {
-        console.log(err)
+        const errors = err.response.data.errors;
+        if(errors) {
+            errors.forEach((error) => alert(error.msg))
+        }
         dispatch({
             type: LOGIN_FAIL,
         })
@@ -73,7 +81,7 @@ export const logout =  (id) =>  (dispatch) => {
     const config = {
         headers: {'Content-Type': 'application/json'}
     }
-     axios.post('https://itransition-task4-auth.herokuapp.com/api/users/logout',body, config)
+     axios.post('/api/users/logout',body, config)
     dispatch({
         type: LOGOUT,
     });
