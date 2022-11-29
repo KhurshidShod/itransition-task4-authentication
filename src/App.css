@@ -121,7 +121,7 @@ th {
 .logout_link{
   padding: 0.3rem 0.8rem !important;
   border-radius: 5px;
-  background-color: rgb(28, 165, 250);
+  background-color: blue;
   text-decoration: none;
   color: white !important;
 }
