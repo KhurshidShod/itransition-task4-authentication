@@ -118,3 +118,10 @@ th {
     width: 95%;
   }
 }
+.logout_link{
+  padding: 0.3rem 0.8rem !important;
+  border-radius: 5px;
+  background-color: rgb(28, 165, 250);
+  text-decoration: none;
+  color: white !important;
+}
