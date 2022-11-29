@@ -39,7 +39,12 @@ async (dispatch) => {
             payload: res.data
         });
     } catch (error) {
-        console.log(err)
+                const errors = error.response.data.errors;
+        if(errors) {
+            errors.forEach((error) => {
+                alert(error.msg)
+            });
+        }
         dispatch({
             type: REG_FAIL,
         })
@@ -59,10 +64,7 @@ export const login = ({ email, password, status }) => async (dispatch) => {
         })
         dispatch(loadUsers)
     } catch (err) {
-        const errors = err.response.data.errors;
-        if(errors) {
-            errors.forEach((error) => alert(error.msg))
-        }
+        console.log(err)
         dispatch({
             type: LOGIN_FAIL,
         })
