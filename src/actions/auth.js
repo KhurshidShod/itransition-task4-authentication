@@ -39,12 +39,7 @@ async (dispatch) => {
             payload: res.data
         });
     } catch (error) {
-        const errors = error.response.data.errors;
-        if(errors) {
-            errors.forEach((error) => {
-                alert(error.msg)
-            });
-        }
+        console.log(err)
         dispatch({
             type: REG_FAIL,
         })
