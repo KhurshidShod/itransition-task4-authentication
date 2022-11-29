@@ -125,3 +125,6 @@ th {
   text-decoration: none;
   color: white !important;
 }
+.delete_Button{
+  background-color: rgb(0, 110, 255);
+}
