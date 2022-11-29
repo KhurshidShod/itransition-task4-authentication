@@ -15,7 +15,7 @@ function Users({ auth: { isAuthenticated, loading }, logout}) {
 
   const history = useNavigate()
   const authLink = (
-    <Link to='/' onClick={() => logout(localStorage.getItem('id'))}>
+    <Link to='/' className="logout_link" onClick={() => logout(localStorage.getItem('id'))}>
       Logout
     </Link>
   )
