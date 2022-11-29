@@ -25,7 +25,7 @@ function Users({ auth: { isAuthenticated, loading }, logout}) {
 
   var fetchData = async () => {
     setPending(true)
-    await axios("http://localhost:5001/api/users")
+    await axios("https://itransition-task4-auth.herokuapp.com/api/users")
     .then(res => {
       Object.keys(res.data).forEach(dat => {
         if(res.data[dat].email === localStorage.getItem('email')){
@@ -59,7 +59,7 @@ function Users({ auth: { isAuthenticated, loading }, logout}) {
 
   const unblockCheckedUsers = () => {
     checkedUsersId.map(async (selectedUserId) => {
-      await fetch(`http://localhost:5001/api/users/${selectedUserId}`, {
+      await fetch(`https://itransition-task4-auth.herokuapp.com/api/users/${selectedUserId}`, {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
@@ -74,7 +74,7 @@ function Users({ auth: { isAuthenticated, loading }, logout}) {
   }
   const blockCheckedUsers = () => {
     checkedUsersId.map(async (selectedUserId) => {
-      await fetch(`http://localhost:5001/api/users/${selectedUserId}`, {
+      await fetch(`https://itransition-task4-auth.herokuapp.com/api/users/${selectedUserId}`, {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
